@@ -1,11 +1,11 @@
 ### Milestone 1
 
-1. ___Team members__:
+1. __Team members__:
     * Hien Phuong 
     * Budi Rahardja
     * Stephen Cockerill
 
-2. ___Software goal and concept__:
+2. __Software goal and concept__:
 __Habit Farm__: An application to help users keep track of the habits they'd like to instill.
 People often want to improve their lives by doing things that they know make them
 happy, healthy, and successful. Such as taking the time to read before bed, flossing their
@@ -49,7 +49,17 @@ to do the routine and log them in the application.
     * We will use a MailChimp email template to format our email reminders.
     * We will use cookiecutter to setup our django project and to handle our signup/login
       pages.
-
+* __WireFrames__:
+    * signup:
+        * ![](https://raw.githubusercontent.com/stephencockerill/habitfarm/master/milestones/img/signup.jpg)
+    * login:
+        * ![](https://raw.githubusercontent.com/stephencockerill/habitfarm/master/milestones/img/login.jpg)
+    * home:
+        * ![](https://raw.githubusercontent.com/stephencockerill/habitfarm/master/milestones/img/home.jpg)
+    * add habit:
+        * ![](https://raw.githubusercontent.com/stephencockerill/habitfarm/master/milestones/img/add_habit.jpg) 
+    * email reminder:
+        * ![](https://raw.githubusercontent.com/stephencockerill/habitfarm/master/milestones/img/email_reminder.jpg)
 4. __Challenges and unkowns__:
     * Integrating with the MailGun/Gmail email apis is an integral part of our
       application. The reminders are the cue for the user to do the routine, as well as
