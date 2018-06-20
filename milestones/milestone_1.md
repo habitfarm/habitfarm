@@ -21,7 +21,7 @@ form, keep track of their progress, and feel rewarded for their efforts!
       she just can't seem to stick with it. So she signs up for __Habit Farm__ and sets it
       up to track her daily habit of flossing her teeth. Each day, she gets a notification
       reminding her to floss. When she does floss, Karen logs that she does and she gets a
-      sense of accomplishment. Here streak is up to 8 days now!
+      sense of accomplishment. Her streak is up to 8 days now!
     * Harold was on the varsity cross country team in college, and considers himself an
       athlete. Years out of school, he has really excelled at his work, but isn't in
       the shape he'd like to be in. He wants to start running everyday, and does
@@ -49,6 +49,7 @@ to do the routine and log them in the application.
     * We will use a MailChimp email template to format our email reminders.
     * We will use cookiecutter to setup our django project and to handle our signup/login
       pages.
+    * We will use an API to send gifs along with our email 
 * __WireFrames__:
     * signup:
         * ![](https://raw.githubusercontent.com/stephencockerill/habitfarm/master/milestones/img/signup.jpg)
