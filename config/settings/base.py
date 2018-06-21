@@ -93,7 +93,7 @@ AUTHENTICATION_BACKENDS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 AUTH_USER_MODEL = 'users.User'
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-LOGIN_REDIRECT_URL = 'users:redirect'
+LOGIN_REDIRECT_URL = 'webapp:habits:list'
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
 LOGIN_URL = 'account_login'
 
@@ -135,6 +135,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'webapp.middleware.AuthRequiredMiddleware',
 ]
 
 # STATIC
@@ -238,3 +239,9 @@ SOCIALACCOUNT_ADAPTER = 'habitfarm.users.adapters.SocialAccountAdapter'
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+LOGIN_EXEMPT_URLS = (
+    r'^accounts/login/',
+    r'^accounts/signup/',
+    r'^accounts/confirm-email/',
+    r'^accounts/',
+)
