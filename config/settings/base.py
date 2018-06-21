@@ -242,4 +242,6 @@ SOCIALACCOUNT_ADAPTER = 'habitfarm.users.adapters.SocialAccountAdapter'
 LOGIN_EXEMPT_URLS = (
     r'^accounts/login/',
     r'^accounts/signup/',
+    r'^accounts/confirm-email/',
+    r'^accounts/',
 )
