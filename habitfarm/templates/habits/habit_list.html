@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block title %}Habits{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>Habits</h2>
+
+  {% include 'habits/_calendar.html' %}
+
+  <div class="row" style="margin-top: 20px">
+    <table class="table">
+      <thead class="bg-dark text-light">
+        <tr>
+          <th scope="col">Habit</th>
+          <th scope="col">Current Streak</th>
+          <th scope="col">Last Logged</th>
+          <th scope="col">Weekly Average</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for habit in habits %}
+          <tr>
+            <th scope="row">{{ habit.name }}</td>
+            <td>{{ habit.currentStreak }} {{habit.schedule}}</td>
+            <td>{{ habit.lastLogEntry }}</td>
+            <td>{{ habit.weeklyAverage }}</td>
+          </tr>
+        {% endfor %}
+        <tr>
+          <td>
+            <a class="btn btn-primary"
+               href="{% url 'webapp:habits:create' %}"
+               role="button">
+              Add a habit
+            </a>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>
+{% endblock content %}
