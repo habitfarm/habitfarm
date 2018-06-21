@@ -284,6 +284,3 @@ habitfarm/media/
 .pytest_cache/
 .env
 .envs/*
-
-### sqlite db
-.sqlite3
