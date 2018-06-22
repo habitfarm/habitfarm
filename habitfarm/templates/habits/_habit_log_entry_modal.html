@@ -1,0 +1,26 @@
+ <!-- Modal -->
+ <div class="modal fade" id="habitLogEntryModal{{ habit.id }}" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Great work!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      <!-- form for creating a habit log entry -->
+      <form action="{% url 'webapp:habits:log_entry_create' habit_id=habit.id %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <textarea class="form-control" name="description" placeholder="Add notes"></textarea>
+        </div>
+        <a href="{% url 'webapp:habits:list' %}">Cancel</a>
+        <input class="btn btn-primary float-right" type="submit" value="Save">
+      </form>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,13 +1,16 @@
-{% extends "base.html" %}
-{% load static i18n %}
-{% block title %}Habits{% endblock %}
+ <!-- Modal -->
+<div class="modal fade" id="habitCreateModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add a habit</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 
-{% block content %}
-<div class="container top-buffer">
-  <h2>Add a habit</h2>
-
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
+      <!-- form for adding a habit -->
       <form action="{% url 'webapp:habits:create' %}" method="post">
         {% csrf_token %}
         <div class="form-group">
@@ -27,7 +30,8 @@
         <a href="{% url 'webapp:habits:list' %}">Cancel</a>
         <input class="btn btn-primary float-right" type="submit" value="Save">
       </form>
+
+      </div>
     </div>
   </div>
 </div>
-{% endblock content %}
