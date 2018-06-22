@@ -6,7 +6,7 @@
     * Stephen Cockerill
 
 2. __Software goal and concept__:
-__Habit Farm__: An application to help users keep track of the habits they'd like to instill.
+__Habit Farm__ is an application to help users keep track of the habits they'd like to instill.
 People often want to improve their lives by doing things that they know make them
 happy, healthy, and successful. Such as taking the time to read before bed, flossing their
 teeth in the morning, going to the gym, etc. But it can be difficult to incorporate the
