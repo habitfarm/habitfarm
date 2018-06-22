@@ -1,10 +1,10 @@
-### Milestone 2
+# Milestone 2
 
-1. __HTML & CSS Click-through__
+## HTML & CSS Click-through
 
 ### Sign in
 Initial landing page for unauthenticated users to sign in.
-![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/img/1_signin.jpg)
+![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/1_signin.jpg)
 
 ### Sign up
 Users can click the "Sign up" button from the sign in page,to navigate 
@@ -50,14 +50,14 @@ new habit will appear in the list.
 Clicking the "Sign Out" option in the nav bar allows users to logout.
 ![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/10_signout.jpg)
 
-2. __Wireframes__:
+## Wireframes
 Wireframes of the front-end design we are striving for.
 
 ### Sign up
 The sign up page will have a nice banner image across the top with a
 promotional section about what's awesome about the platform on the left, and 
 the actual sign up form on the right.
-![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/sign_up.jpg)
+![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/wireframe/sign_up.jpg)
 
 ### Sign in
 The sign in page will have banner across the top, similar to the sign in page,
@@ -70,7 +70,7 @@ The calendar will fill in colors on each day that the corresponding habit,
 with the same color in the list, has had a routine logged. The navigation will
 be on a column on the left hand side, with the plaform logo in the top-left
 corner.
-![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/habits_list.jpg)
+![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/wireframe/habits_list.jpg)
 
 ### Habits create
 This will be a modal that pops up when the user clicks "Add a habit" on the
@@ -78,15 +78,15 @@ habits list page. The modal will allow the user to add the
 habit name, frequency that they'd like to do the routine, an icon
 or color for the habit list page,
 and a description of the habit.
-![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/habits_create.jpg)
+![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/wireframe/habits_create.jpg)
 
 ### Email notification
 Based on the configured frequency of the habit, we will send email reminders
 to ask the user if they've done their routines yet today, and log it in the
 platform.
-![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/email_notification.jpg)
+![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/wireframe/email_notification.jpg)
 
-3. __Backend Concepts__:
+## Backend Concepts
 Our backend data model consists of user, habits, and log entries. Each user
 can have many habits. Each habit has many log entries for when a routine was
 completed.
