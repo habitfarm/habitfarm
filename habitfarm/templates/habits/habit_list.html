@@ -2,7 +2,9 @@
 {% load static i18n %}
 {% block title %}Habits{% endblock %}
 
+
 {% block content %}
+
 <div class="container top-buffer">
   <h2>Habits</h2>
 
@@ -14,8 +16,9 @@
         <tr>
           <th scope="col">Habit</th>
           <th scope="col">Current Streak</th>
-          <th scope="col">Last Logged</th>
+          <th scope="col">Last Entry</th>
           <th scope="col">Weekly Average</th>
+          <th scope="col">Add Entry</th>
         </tr>
       </thead>
       <tbody>
@@ -25,15 +28,20 @@
             <td>{{ habit.currentStreak }} {{habit.schedule}}</td>
             <td>{{ habit.lastLogEntry }}</td>
             <td>{{ habit.weeklyAverage }}</td>
+            <td>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#habitLogEntryModal{{ habit.id }}">
+                +  
+              </button>
+              {% include "habits/_habit_log_entry_modal.html" %}
+            </td>
           </tr>
         {% endfor %}
         <tr>
           <td>
-            <a class="btn btn-primary"
-               href="{% url 'webapp:habits:create' %}"
-               role="button">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#habitCreateModal">
               Add a habit
-            </a>
+            </button>
+            {% include "habits/_habit_create_modal.html" %}
           </td>
         </tr>
       </tbody>

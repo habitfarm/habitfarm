@@ -9,6 +9,7 @@ from django.urls import reverse
 # sample data for html click-through
 habits = [
     {
+        'id': 1,
         'name': 'Floss',
         'description': 'Dentist says I should do it, so I\'m gonna do it, damn it!',
         'currentStreak': 6,
@@ -17,6 +18,7 @@ habits = [
         'weeklyAverage': 3.2,
     },
     {
+        'id': 2,
         'name': 'Go to the gym',
         'description': 'Gotta get back in shape.',
         'currentStreak': 0,
@@ -62,6 +64,17 @@ def habit_create(request):
             'weeklyAverage': '-',
         })
         messages.success(request, 'Habit added!')
-        return HttpResponseRedirect(reverse('webapp:habits:list'))
-    else:
-        return render(request, 'habits/habit_create.html')
+
+    return HttpResponseRedirect(reverse('webapp:habits:list'))
+
+
+def log_entry_create(request, habit_id):
+    if request.POST:
+        habit = None
+        for h in habits:
+            if h['id'] == habit_id:
+                habit = h
+        if habit:
+            # for now just put a success messsage
+            messages.success(request, 'Logged entry for %s!' % habit['name'])
+    return HttpResponseRedirect(reverse('webapp:habits:list'))
