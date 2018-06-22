@@ -4,51 +4,51 @@
 
 ### Sign in
 Initial landing page for unauthenticated users to sign in.
-![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/1_signin.jpg)
+![](https://raw.githubusercontent.com/stephencockerill/habitfarm/master/milestones/img/clickthrough/1_signin.png)
 
 ### Sign up
-Users can click the "Sign up" button from the sign in page,to navigate 
+Users can click the "Sign up" button from the sign in page, to navigate 
 to the sign up page and register.
-![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/2_signup.jpg)
+![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/2_signup.png)
 
 ### Verify email 
-After submitting the sign up form, users get an automated email to verify
+After submitting the sign up form, users get an automated email to verify 
 the email provided.
-![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/3_verify_email.jpg)
+![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/3_verify_email.png)
 
 ### Confirm email 
-Opening the link in the verification email will bring them to a confirmation
+Opening the link in the verification email will bring them to a confirmation 
 page.
-![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/4_confirm_email.jpg)
+![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/4_confirm_email.png)
 
 ### Sign in
 Clicking the "Confirm" button takes the user to the sign in page.
-![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/5_signin.jpg)
+![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/5_signin.png)
 
 ### Habits list
-The user is taken to the overview page that lists all their habits.
-This is the main page in our application. It lists the user's configured
+The user is taken to the overview page that lists all their habits. 
+This is the main page in our application. It lists the user's configured 
 habits in a table with basic information about how often they are doing the 
-routine associated with their habit. At the top of the page is a calendar that
-will display when habit routines were logged. Not shown in this click through
+routine associated with their habit. At the top of the page is a calendar that 
+will display when habit routines were logged. Not shown in this click through 
 will be a button to log when a routine has been completed.
-![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/6_habits_list.jpg)
+![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/6_habits_list.png)
 
 ### Habits create
 Clicking the "Add a habit" button will take users to the habit create page. 
 Here users can add new habits that they'd like to track. This will eventually 
 be a modal instead of a separate page.
-![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/7_habits_create.jpg)
-![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/8_habits_create.jpg)
+![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/7_habits_create.png)
+![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/8_habits_create.png)
 
 ### Habits list
 After adding a habit, users are taken back to the habits list page where the
 new habit will appear in the list.
-![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/9_habits_list.jpg)
+![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/9_habits_list.png)
 
 ### Sign out
 Clicking the "Sign Out" option in the nav bar allows users to logout.
-![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/10_signout.jpg)
+![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/clickthrough/10_signout.png)
 
 ## Wireframes
 Wireframes of the front-end design we are striving for.
@@ -62,7 +62,7 @@ the actual sign up form on the right.
 ### Sign in
 The sign in page will have banner across the top, similar to the sign in page,
 with a centered sign in form.
-![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/img/sign_in.jpg)
+![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/wireframe/sign_in.jpg)
 
 ### Habits list
 This page will have a calendar at the top, and a list of habits at the bottom.
@@ -87,7 +87,7 @@ platform.
 ![](https://raw.githubusercontent.com/habitfarm/habitfarm/master/milestones/wireframe/email_notification.jpg)
 
 ## Backend Concepts
-Our backend data model consists of user, habits, and log entries. Each user
+Our data model consists of users, habits, and log entries. Each user
 can have many habits. Each habit has many log entries for when a routine was
 completed.
 * __User__:
