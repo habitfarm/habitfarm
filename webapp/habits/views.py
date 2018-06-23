@@ -56,6 +56,7 @@ def habit_create(request):
     """
     if request.POST:
         habits.append({
+            'id': len(habits) + 1,
             'name': request.POST.get('name'),
             'description': request.POST.get('description'),
             'schedule': request.POST.get('schedule'),
