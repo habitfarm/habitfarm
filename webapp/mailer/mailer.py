@@ -6,8 +6,8 @@ class Mailer(object):
     """
     Mailer class wrapper for MailGun API
 
-    Keys/parameters:
-    ====================
+    Parameters:
+    ===========
     {
         'account': '',
         'key': '',
@@ -17,6 +17,7 @@ class Mailer(object):
         'mail_subject': '',
         'mail_text': '',
         'mail_html': '',
+        'test_only': <bool>,
     }
     """
 
@@ -30,11 +31,13 @@ class Mailer(object):
         self.mail_subject = kwargs['mail_subject']
         self.mail_text = kwargs['mail_text']
         self.mail_html = kwargs['mail_html']
+        # Test only
+        self.test_only = kwargs['test_only']
         # Delivery status
         self.success = False
 
     def send_email(self):
-        """Sends email"""
+        """Sends an email"""
         self.success = False
         data = urllib.parse.urlencode(
             {
@@ -55,36 +58,22 @@ class Mailer(object):
         )
         opener = urllib.request.build_opener(auth_handler)
         urllib.request.install_opener(opener)
-        d = urllib.request.urlopen(self.url, data)
-        # Checking the status
-        # ret_code = str(d.code) + " " + d.reason
+        if self.test_only:
+            print(self.url, data)
+        else:
+            d = urllib.request.urlopen(self.url, data)
+            # Checking the status
+            # ret_code = str(d.code) + " " + d.reason
 
-        # 200 : Successful delivery
-        if d.code == 200:
-            self.success = True
+            # 200 : Successful delivery
+            if d.code == 200:
+                self.success = True
 
 
 def main():
     """
     Mailer Test: Send test email
     Command-line executed
-
-    1) Load MailGun credentials from env
-    2) Load from_address & URL
-    3) Load email address to spam from env
-    4) Load dummy bulk email data from html template
-    4) Wrap the package (dictionary)
-        mail_data = {
-            'account': '',
-            'key': '',
-            'url': '',
-            'addr_from': '',
-            'addr_to': '',
-            'mail_subject': '',
-            'mail_text': '',
-            'mail_html': '',
-        }
-    5) Send the package to mailer
     """
     import os
 
@@ -101,6 +90,7 @@ def main():
         'mail_subject': 'Test Email',
         'mail_text': 'This is a test email',
         'mail_html': open('templates_email/passion/template.html', 'r').read(),
+        'test_only': True,
     }
 
     mailer = Mailer(**mail_data)
