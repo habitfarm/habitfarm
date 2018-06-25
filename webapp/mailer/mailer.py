@@ -90,7 +90,7 @@ def main():
         'url': 'https://api.mailgun.net/v3/{0}.mailgun.org/messages'.format(
             os.getenv('MAILGUN_ACCOUNT')
             ),
-        'addr_from': "user <user@{0}.mailgun.org>".format(
+        'addr_from': "habitfarm.app<habitfarm.app@{0}.mailgun.org>".format(
             os.getenv('MAILGUN_ACCOUNT')
             ),
         'addr_to': os.getenv('MAILGUN_TO'),
@@ -100,9 +100,8 @@ def main():
             'templates_email/slate/Stationery/stationery.html',
             'r'
             ).read(),
-        'test_only': True,
+        'test_only': False,
     }
-
     # Bulk mail data for testing purposes
     #
     # Save mail data to a file (reversed) test.mail -> liam.test
