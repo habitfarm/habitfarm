@@ -35,8 +35,9 @@ class Mailer(object):
         self.test_only = kwargs['test_only']
         # Delivery status
         self.success = False
+        self.d = None
 
-    def send_email(self):
+    def send(self):
         """Sends an email"""
         self.success = False
         data = urllib.parse.urlencode(
@@ -58,24 +59,30 @@ class Mailer(object):
         )
         opener = urllib.request.build_opener(auth_handler)
         urllib.request.install_opener(opener)
+
         if self.test_only:
             print(self.url, data)
-        else:
-            d = urllib.request.urlopen(self.url, data)
-            # Checking the status
-            # ret_code = str(d.code) + " " + d.reason
 
+        else:
+            try:
+                self.d = urllib.request.urlopen(self.url, data)
+            except Exception as e:
+                print(e.message, e.args)
+
+            # Checking the status
             # 200 : Successful delivery
-            if d.code == 200:
+            if self.d.code == 200:
                 self.success = True
 
 
 def main():
     """
     Mailer Test: Send test email
-    Command-line executed
+    - Command-line executed
+    - Loads some vars from env
     """
     import os
+    import json
 
     mail_data = {
         'account': os.getenv('MAILGUN_ACCOUNT'),
@@ -89,14 +96,23 @@ def main():
         'addr_to': os.getenv('MAILGUN_TO'),
         'mail_subject': 'Test Email',
         'mail_text': 'This is a test email',
-        'mail_html': open('templates_email/passion/template.html', 'r').read(),
+        'mail_html': open(
+            'templates_email/slate/Stationery/stationery.html',
+            'r'
+            ).read(),
         'test_only': True,
     }
 
+    # Bulk mail data for testing purposes
+    #
+    # Save mail data to a file (reversed) test.mail -> liam.test
+    # open('liam.tset', 'w+').write(json.dumps(mail_data)[::-1])
+    # Load mail data from a file (reversed) liam.test -> test.mail
+    # mail_data = open('liam.tset', 'w+').read().[::-1]
+
     mailer = Mailer(**mail_data)
-    mailer.send_email()
-    if 1:
-        print('SENT =', mailer.success)
+    mailer.send()
+    print('Sent =', mailer.success)
 
 
 if __name__ == "__main__":
