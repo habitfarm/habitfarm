@@ -38,26 +38,24 @@ def habit_create(request):
     habits = Habit.objects.filter(user=request.user)
 
     if request.POST:
-        Habit.objects.create(
-            user=request.user,
-            name=request.POST.get('name'),
-            description=request.POST.get('description'),
-            schedule=request.POST.get('schedule'),
-            color=request.POST.get('color'),
-        )
-
-        messages.success(request, 'Habit added!')
-
+        habit, created = Habit.objects.update_or_create(
+            id=request.POST.get('habit_id'),
+            defaults={
+                'user':request.user,
+                'name': request.POST.get('name'),
+                'description': request.POST.get('description'),
+                'schedule':request.POST.get('schedule'),
+                'color':request.POST.get('color'),
+                }
+                )
+    messages.success(request, 'Habit added!')
     return HttpResponseRedirect(reverse('webapp:habits:list'))
 
 
 def log_entry_create(request, habit_id):
     if request.POST:
         habit = Habit.objects.get(id=habit_id)
-        LogEntry.objects.create(
-            note=request.POST.get('note'),
-            logged=request.POST.get('logged'),
-            habit=habit,
-        )
+        logged=request.POST.get('logged', datetime.now())
+
         messages.success(request, 'Logged entry for %s!' % habit.name)
     return HttpResponseRedirect(reverse('webapp:habits:list'))

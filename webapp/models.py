@@ -44,4 +44,6 @@ class LogEntry(models.Model):
     habit = models.ForeignKey(
         Habit,
         on_delete = models.CASCADE,
+        null=False,
+        blank=False
     )
