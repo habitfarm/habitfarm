@@ -102,12 +102,6 @@ def main():
             ).read(),
         'test_only': False,
     }
-    # Bulk mail data for testing purposes
-    #
-    # Save mail data to a file (reversed) test.mail -> liam.test
-    # open('liam.tset', 'w+').write(json.dumps(mail_data)[::-1])
-    # Load mail data from a file (reversed) liam.test -> test.mail
-    # mail_data = open('liam.tset', 'w+').read().[::-1]
 
     mailer = Mailer(**mail_data)
     mailer.send()
