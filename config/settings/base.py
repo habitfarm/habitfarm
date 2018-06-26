@@ -68,6 +68,7 @@ THIRD_PARTY_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'rest_framework',
+    'colorfield',
 ]
 LOCAL_APPS = [
     'habitfarm.users.apps.UsersAppConfig',
