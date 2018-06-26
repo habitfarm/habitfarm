@@ -234,21 +234,18 @@
             "index": "pypi",
             "version": "==3.0"
         },
-<<<<<<< HEAD
         "django-coverage-plugin": {
             "hashes": [
                 "sha256:84b247a39885e59fa018b6b9ba07b034d2cb7df68c6ef372b2df90fe29272d69"
             ],
             "index": "pypi",
             "version": "==1.5.0"
-=======
         "django-colorfield": {
             "hashes": [
                 "sha256:7570b4551d94088bd36ec88e64e7569479e5d5ef28d69280b7f23216c8023cb2"
             ],
             "index": "pypi",
             "version": "==0.1.14"
->>>>>>> a5e7582... Now we have color, finished phase 1 that Stephen assigned
         },
         "django-crispy-forms": {
             "hashes": [
