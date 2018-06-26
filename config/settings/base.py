@@ -246,3 +246,8 @@ LOGIN_EXEMPT_URLS = (
     r'^accounts/confirm-email/',
     r'^accounts/',
 )
+
+import os
+
+MAILGUN_ACCOUNT = os.getenv('MAILGUN_ACCOUNT')
+MAILGUN_KEY = os.getenv('MAILGUN_KEY')
