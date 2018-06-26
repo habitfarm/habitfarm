@@ -5,6 +5,8 @@ import os
 import json
 from webapp.mailer.mailer import Mailer
 
+from habitfarm.users.models import User
+
 
 class Command(BaseCommand):
     help = 'Send email'
@@ -41,6 +43,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         print('Sending ', end='')
+        # user = User
 
         if options['test']:
             print('a test email')
