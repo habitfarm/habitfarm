@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
+from django.conf import settings
 
 import os
 import json
@@ -44,15 +45,15 @@ class Command(BaseCommand):
         if options['test']:
             print('a test email')
             mail_data = {
-                'account': os.getenv('MAILGUN_ACCOUNT'),
-                'key': os.getenv('MAILGUN_KEY'),
+                'account': settings.MAILGUN_ACCOUNT,
+                'key': settings.MAILGUN_KEY,
                 'url': 'https://api.mailgun.net/v3/{0}.mailgun.org/messages'.format(
-                    os.getenv('MAILGUN_ACCOUNT')
+                    settings.MAILGUN_ACCOUNT
                     ),
                 'addr_from': "habitfarm.app<habitfarm.app@{0}.mailgun.org>".format(
-                    os.getenv('MAILGUN_ACCOUNT')
+                    settings.MAILGUN_ACCOUNT
                     ),
-                'addr_to': os.getenv('MAILGUN_TO'),
+                'addr_to': 'bigpow@gmail.com',
                 'mail_subject': 'Test Email',
                 'mail_text': 'This is a test email',
                 'mail_html': open(
