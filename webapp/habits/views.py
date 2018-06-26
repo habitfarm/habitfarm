@@ -55,7 +55,12 @@ def habit_create(request):
 def log_entry_create(request, habit_id):
     if request.POST:
         habit = Habit.objects.get(id=habit_id)
-        logged=request.POST.get('logged', datetime.now())
+        LogEntry.objects.create(
+            note=request.POST.get('note'),
+            logged=request.POST.get('logged', datetime.now()),
+            habit=habit,
+        )
+
 
         messages.success(request, 'Logged entry for %s!' % habit.name)
     return HttpResponseRedirect(reverse('webapp:habits:list'))
