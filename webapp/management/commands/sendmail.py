@@ -43,7 +43,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         print('Sending ', end='')
-        # user = User
+        # user = AUTH_USER_MODEL
 
         if options['test']:
             print('a test email')
