@@ -2,6 +2,7 @@
 Base settings to build other settings files upon.
 """
 
+import os
 import environ
 
 ROOT_DIR = environ.Path(__file__) - 3  # (habitfarm/config/settings/base.py - 3 = habitfarm/)
@@ -246,9 +247,8 @@ LOGIN_EXEMPT_URLS = (
     r'^accounts/signup/',
     r'^accounts/confirm-email/',
     r'^accounts/',
+    r'^admin/',
 )
-
-import os
 
 MAILGUN_ACCOUNT = os.getenv('MAILGUN_ACCOUNT')
 MAILGUN_KEY = os.getenv('MAILGUN_KEY')
