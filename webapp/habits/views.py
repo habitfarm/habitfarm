@@ -6,6 +6,17 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from webapp.models import LogEntry, Habit
+from django.forms import ModelForm
+
+class HabitForm(ModelForm):
+    class Meta:
+        model = Habit
+        fields = ['name', 'color', 'schedule', 'description',]
+
+class LogEntryForm(ModelForm):
+    class Meta:
+        model = LogEntry
+        fields= ['note', 'logged',]
 
 def habit_list(request):
     """
@@ -18,7 +29,6 @@ def habit_list(request):
     habitfarm.users.views.UserListView
     """
     habits = Habit.objects.filter(user=request.user)
-    print(habits)
     context = {
         'habits': habits,
     }
@@ -38,29 +48,33 @@ def habit_create(request):
     habits = Habit.objects.filter(user=request.user)
 
     if request.POST:
-        habit, created = Habit.objects.update_or_create(
-            id=request.POST.get('habit_id'),
-            defaults={
-                'user':request.user,
-                'name': request.POST.get('name'),
-                'description': request.POST.get('description'),
-                'schedule':request.POST.get('schedule'),
-                'color':request.POST.get('color'),
-                }
-                )
-    messages.success(request, 'Habit added!')
-    return HttpResponseRedirect(reverse('webapp:habits:list'))
+        form = HabitForm(request.POST)
+        if form.is_valid():
+            habit = form.save(commit=False)
+            habit.user = request.user
+            habit.save()
+            messages.success(request, 'Habit added!')
+        return HttpResponseRedirect(reverse('webapp:habits:list'))
+    else:
+        form = HabitForm()
 
+    context = {
+        'form': form,
+    }
+    return render(request, reverse('webapp:habits:list'), context)
 
 def log_entry_create(request, habit_id):
     if request.POST:
-        habit = Habit.objects.get(id=habit_id)
-        LogEntry.objects.create(
-            note=request.POST.get('note'),
-            logged=request.POST.get('logged', datetime.now()),
-            habit=habit,
-        )
+        form = LogEntryForm(request.POST)
+        if form.is_valid():
+            logentry = form.save(commit=False)
+            form.save()
+            messages.success(request, 'Logged entry for %s!' % habit.name)
+        return HttpResponseRedirect(reverse('webapp:habits:list'))    
+    else:
+        form = LogEntryForm()
 
-
-        messages.success(request, 'Logged entry for %s!' % habit.name)
-    return HttpResponseRedirect(reverse('webapp:habits:list'))
+    context = {
+        'form': form
+    }
+    return render(request, reverse('webapp:habits:list'), context)
