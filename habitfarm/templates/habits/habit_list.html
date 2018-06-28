@@ -25,23 +25,22 @@
         {% for habit in habits %}
           <tr>
             <th scope="row">{{ habit.name }}</td>
-            <td>{{ habit.currentStreak }} {{habit.schedule}}</td>
-            <td>{{ habit.lastLogEntry }}</td>
-            <td>{{ habit.weeklyAverage }}</td>
+            <td>{{ habit.current_streak }} {{habit.schedule}}</td>
+            <td>{{ habit.last_log_entry }}</td>
+            <td>{{ habit.weekly_average }}</td>
             <td>
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#habitLogEntryModal{{ habit.id }}">
                 +  
               </button>
-              {% include "habits/_habit_log_entry_modal.html" %}
             </td>
           </tr>
+        {% include "habits/_habit_log_entry_modal.html" %}
         {% endfor %}
         <tr>
           <td>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#habitCreateModal">
               Add a habit
             </button>
-            {% include "habits/_habit_create_modal.html" %}
           </td>
         </tr>
       </tbody>
@@ -49,4 +48,7 @@
     </table>
   </div>
 </div>
+
+{% include "habits/_habit_create_modal.html" %}
+
 {% endblock content %}

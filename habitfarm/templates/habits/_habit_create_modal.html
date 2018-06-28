@@ -1,3 +1,4 @@
+{% load bootstrap %}
  <!-- Modal -->
 <div class="modal fade" id="habitCreateModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -13,20 +14,7 @@
       <!-- form for adding a habit -->
       <form action="{% url 'webapp:habits:create' %}" method="post">
         {% csrf_token %}
-        <div class="form-group">
-          <input type="text" class="form-control" name="name" required placeholder="Add habit name">
-        </div>
-        <div class="form-group">
-          <label for="schedule">Schedule</label>
-          <select id="schedule" name="schedule"class="form-control" required>
-            <option selected label="Daily">days</option>
-            <option label="Weekly">weeks</option>
-            <option label="Monthly">months</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <textarea class="form-control" name="description" placeholder="Add description"></textarea>
-        </div>
+        {{ habit_create_form|bootstrap }}
         <a href="{% url 'webapp:habits:list' %}">Cancel</a>
         <input class="btn btn-primary float-right" type="submit" value="Save">
       </form>

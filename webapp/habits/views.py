@@ -1,22 +1,42 @@
 from datetime import datetime
-from webapp.models import Habit
 from dateutil.relativedelta import relativedelta
+
+from colorful.widgets import ColorFieldWidget
 from django.contrib import messages
+from django import forms
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from webapp.models import LogEntry, Habit
-from django.forms import ModelForm
 
-class HabitForm(ModelForm):
+from webapp.models import (
+    LogEntry,
+    Habit,
+)
+
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
+class HabitForm(forms.ModelForm):
     class Meta:
         model = Habit
-        fields = ['name', 'color', 'schedule', 'description',]
+        fields = ['name', 'color', 'schedule', 'description', ]
+        widgets = {
+            'color': ColorFieldWidget()
+        }
 
-class LogEntryForm(ModelForm):
+
+class LogEntryForm(forms.ModelForm):
+    note = forms.TextInput(attrs={'required': False})
+
     class Meta:
         model = LogEntry
-        fields= ['note', 'logged',]
+        fields = ['logged', 'note', ]
+        widgets = {
+            'logged': DateInput(),
+        }
+
 
 def habit_list(request):
     """
@@ -29,8 +49,17 @@ def habit_list(request):
     habitfarm.users.views.UserListView
     """
     habits = Habit.objects.filter(user=request.user)
+    recent_log_entries = LogEntry.objects.filter(
+        habit__in=habits,
+        logged__gt=datetime.now() - relativedelta(months=2),
+    )
+    habit_create_form = HabitForm()
+    log_entry_create_form = LogEntryForm()
     context = {
         'habits': habits,
+        'log_entries': recent_log_entries,
+        'habit_create_form': habit_create_form,
+        'log_entry_create_form': log_entry_create_form,
     }
 
     return render(request, 'habits/habit_list.html', context)
@@ -45,8 +74,6 @@ def habit_create(request):
     django.views.generic.CreateView class based view when we get our model
     going.
     """
-    habits = Habit.objects.filter(user=request.user)
-
     if request.POST:
         form = HabitForm(request.POST)
         if form.is_valid():
@@ -59,22 +86,25 @@ def habit_create(request):
         form = HabitForm()
 
     context = {
-        'form': form,
+        'habit_create_form': form,
     }
     return render(request, reverse('webapp:habits:list'), context)
 
+
 def log_entry_create(request, habit_id):
     if request.POST:
+        habit = Habit.objects.get(id=habit_id)
         form = LogEntryForm(request.POST)
         if form.is_valid():
-            logentry = form.save(commit=False)
+            log_entry = form.save(commit=False)
+            log_entry.habit = habit
             form.save()
             messages.success(request, 'Logged entry for %s!' % habit.name)
-        return HttpResponseRedirect(reverse('webapp:habits:list'))    
+        return HttpResponseRedirect(reverse('webapp:habits:list'))
     else:
         form = LogEntryForm()
 
     context = {
-        'form': form
+        'log_entry_create_form': form
     }
     return render(request, reverse('webapp:habits:list'), context)

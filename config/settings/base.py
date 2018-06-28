@@ -64,12 +64,15 @@ DJANGO_APPS = [
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
-    'crispy_forms',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'rest_framework',
+    'bootstrap_datepicker',
+    'bootstrapform',
     'colorfield',
+    'colorful',
+    'crispy_forms',
+    'rest_framework',
 ]
 LOCAL_APPS = [
     'habitfarm.users.apps.UsersAppConfig',
