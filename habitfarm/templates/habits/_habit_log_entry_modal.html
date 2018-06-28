@@ -1,3 +1,4 @@
+{% load bootstrap %}
 <!-- Modal -->
 <div class="modal fade" id="habitLogEntryModal{{ habit.id }}" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -12,11 +13,11 @@
         <!-- form for creating a habit log entry -->
         <form action="{% url 'webapp:habits:log_entry_create' habit_id=habit.id %}" method="post">
           {% csrf_token %}
-          <div class="form-group">
-            <textarea class="form-control" name="note" placeholder="Add notes"></textarea>
+          {{ log_entry_create_form|bootstrap }}
+          <div class="row">
+            <a href="{% url 'webapp:habits:list' %}">Cancel</a>
+            <input class="btn btn-primary float-right" type="submit" value="Save">
           </div>
-          <a href="{% url 'webapp:habits:list' %}">Cancel</a>
-          <input class="btn btn-primary float-right" type="submit" value="Save">
         </form>
       </div>
     </div>

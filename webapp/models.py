@@ -1,15 +1,18 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.conf import settings
-from colorfield.fields import ColorField
+from colorful.fields import RGBColorField
+
 
 class Habit(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(
+        null=True,
+        blank=True,
+    )
     schedule = models.CharField(
         default='daily',
-        max_length = 20,
-        choices = [
+        max_length=20,
+        choices=[
             ('daily', 'Daily'),
             ('weekly', 'Weekly'),
             ('monthly', 'Monthly'),
@@ -21,21 +24,23 @@ class Habit(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     status = models.CharField(
-        max_length = 20,
-        choices = [('open', 'Open'), ('achieved', 'Achieved'),],
+        max_length=20,
+        choices=[('open', 'Open'), ('achieved', 'Achieved'), ],
     )
-    color = ColorField(
-        max_length=100,
+    color = RGBColorField(
         default='#663399',
-        null=True
     )
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        on_delete = models.CASCADE
+        on_delete=models.CASCADE
     )
 
+
 class LogEntry(models.Model):
-    note = models.TextField(null=True)
+    note = models.TextField(
+        null=True,
+        blank=True,
+    )
     logged = models.DateTimeField(
         null=False,
         blank=False,
@@ -43,7 +48,7 @@ class LogEntry(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     habit = models.ForeignKey(
         Habit,
-        on_delete = models.CASCADE,
+        on_delete=models.CASCADE,
         null=False,
         blank=False
     )
