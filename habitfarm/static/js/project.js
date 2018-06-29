@@ -19,3 +19,10 @@ Issues with the above approach:
 4. Undocumented: No mention in the documentation, or it's too hard for me to find
 */
 $('.form-group').removeClass('row');
+
+// bootstrap-calendar
+var calendar = $("#calendar").calendar({
+  // tmpl_path: "/static/bootstrap-calendar/tmpls/",
+  tmpl_path: "/static/bootstrap-calendar/tmpls/",
+  events_source: '/habits/calendar'
+});	
