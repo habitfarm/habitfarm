@@ -6,9 +6,12 @@
 {% block content %}
 
 <div class="container top-buffer">
-  <h2>Habits</h2>
+  <h1>Habits</h1>
+  <hr />
 
-  {% include 'habits/_calendar.html' %}
+  <h4 style="text-align: center;">{{ today|date }}</h4>
+
+  {% include 'habits/calendar/_calendar.html' %}
 
   <div class="row" style="margin-top: 20px">
     <table class="table">
@@ -24,12 +27,16 @@
       <tbody>
         {% for habit in habits %}
           <tr>
-            <th scope="row">{{ habit.name }}</td>
+            <th scope="row">
+              <span class=" event"
+                    style="background-color: {{ habit.color }};">
+              </span>
+              {{ habit.name }}</td>
             <td>{{ habit.current_streak }} {{habit.schedule}}</td>
-            <td>{{ habit.last_log_entry }}</td>
+            <td>{{ habit.last_log_entry|date }}</td>
             <td>{{ habit.weekly_average }}</td>
-            <td>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#habitLogEntryModal{{ habit.id }}">
+            <td style="text-align: center;">
+              <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target="#habitLogEntryModal{{ habit.id }}">
                 +  
               </button>
             </td>

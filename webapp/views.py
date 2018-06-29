@@ -7,4 +7,4 @@ def home(request):
         print('VIEW')
         return HttpResponseRedirect(reverse('account_login'))
     else:
-        return HttpResponseRedirect(reverse('users:list'))
+        return HttpResponseRedirect(reverse('webapp:habits:list'))
