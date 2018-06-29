@@ -1,7 +1,8 @@
 from django.db import models
 from django.conf import settings
 from colorful.fields import RGBColorField
-
+from django.utils import timezone
+from datetime import timedelta
 
 class Habit(models.Model):
     name = models.CharField(max_length=100)
@@ -52,3 +53,39 @@ class LogEntry(models.Model):
         null=False,
         blank=False
     )
+
+    def save(self):
+        super().save()
+        if self.habit.last_log_entry < self.logged:
+            self.habit.last_log_entry = self.logged
+
+        current_streak = self.current_streak()
+        longest_streak = self.habit.longest_streak
+        if current_streak > longest_streak:
+            longest_streak = current_streak
+        self.habit.current_streak = current_streak
+        self.habit.longest_streak = longest_streak
+        self.habit.save()
+
+    def current_streak(self):
+        current_streak = 0
+        today = timezone.now().date()
+        compareDate = today + timezone.timedelta(1)
+        entry_dates = LogEntry.objects.filter(habit=self.habit).values_list('logged', flat=True).order_by('-logged')
+        previous_date = None
+        for date in entry_dates:
+            date = date.date()
+            if previous_date != date:
+                delta = compareDate - date
+                if delta.days == 1:
+                    current_streak += 1
+                elif delta.days == 0:
+                    current_streak = 0
+                else:
+                    break
+
+                    compareDate = date
+            previous_date = date
+        print("Look here")
+        print(current_streak)
+        return current_streak
