@@ -57,11 +57,11 @@ class Command(BaseCommand):
             # send a test email
             print('a test email')
             # make email content
-            addr_to = 'bigpow@gmail.com'
-            subject = 'This is a test'
-            m_text = 'This is a test'
+            addr_to = 'emails.hienn@gmail.com'
+            subject = 'Your Habit Reminder'
+            m_text = 'Your Habit Reminder'
             m_html = open(
-                    'webapp/mailer/templates_email/slate/Stationery/stationery.html',
+                    'webapp/mailer/templates_email/reminder.html',
                     'r'
                     ).read()
 
